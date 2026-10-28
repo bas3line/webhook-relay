@@ -1,0 +1,26 @@
+{
+  "name": "webhook-relay",
+  "version": "1.0.0",
+  "private": true,
+  "description": "boat's sandbox webhooks, signed and checked, posted to Discord with boat's logo. One Cloudflare Worker, no runtime dependencies.",
+  "license": "MIT",
+  "author": "bas3line (https://github.com/bas3line)",
+  "repository": "github:bas3line/webhook-relay",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "wrangler dev",
+    "typecheck": "tsc",
+    "test": "node --test \"src/*.test.ts\"",
+    "check": "npm run typecheck && npm test && wrangler deploy --dry-run --outdir dist",
+    "send": "node scripts/send.ts",
+    "deploy": "npm run check && wrangler deploy"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.155.0"
+  }
+}

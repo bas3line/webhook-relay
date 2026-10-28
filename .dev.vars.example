@@ -1,0 +1,7 @@
+# Copy to .dev.vars for `npm run dev` and `npm run send`. .dev.vars is gitignored: keep it that way.
+
+# Any string works locally. In production it is the whsec_ secret `boat webhook create` prints once.
+BOAT_WEBHOOK_SECRET=whsec_local_only
+
+# Discord: channel settings, Integrations, Webhooks, New Webhook, Copy Webhook URL.
+DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/<id>/<token>

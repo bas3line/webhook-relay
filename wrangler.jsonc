@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "webhook-relay",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-19",
+  // The relay only ever calls Discord: refuse fetches to private addresses.
+  "compatibility_flags": ["global_fetch_strictly_public"],
+  "workers_dev": true,
+  "observability": {
+    "enabled": true
+  },
+  // A deploy fails while either is unset, instead of the Worker answering 401 or 502 to every event.
+  "secrets": {
+    "required": ["BOAT_WEBHOOK_SECRET", "DISCORD_WEBHOOK_URL"]
+  }
+}
