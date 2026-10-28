@@ -1,0 +1,11 @@
+name: Idea
+description: Something a message should show, or a source or destination the relay should take.
+labels: [idea]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+      description: What you'd like, and what it's for. For a new source or destination, link its webhook docs.
+    validations:
+      required: true

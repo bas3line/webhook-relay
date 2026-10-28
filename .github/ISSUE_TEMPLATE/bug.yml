@@ -1,0 +1,27 @@
+name: Bug
+description: An event that didn't post, posted wrong, or a route that answered wrong.
+labels: [bug]
+body:
+  - type: input
+    id: event
+    attributes:
+      label: Event or route
+      description: The boat event, or the route, that went wrong.
+      placeholder: sandbox.degraded, POST /boat
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you expected, and what you saw. The status from boat's delivery log, or a line from Workers Logs, helps. Leave out your secrets and your Discord webhook URL.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Commit
+      description: The commit you deployed, and whether it's a fork.
+      placeholder: main at a1b2c3d
+    validations:
+      required: true
