@@ -1,7 +1,12 @@
-# Copy to .dev.vars for `npm run dev` and `npm run send`. .dev.vars is gitignored: keep it that way.
+# Copy to .dev.vars for `npm run dev`, the send scripts, and the first deploy
+# (`npx wrangler deploy --secrets-file .dev.vars`). .dev.vars is gitignored: keep it that way.
 
-# Any string works locally. In production it is the whsec_ secret `boat webhook create` prints once.
+# Sources: one signing secret each. Locally, any string works.
+
+# boat: the whsec_ secret `boat webhook create` prints once.
 BOAT_WEBHOOK_SECRET=whsec_local_only
+
+# Destinations.
 
 # Discord: channel settings, Integrations, Webhooks, New Webhook, Copy Webhook URL.
 DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/<id>/<token>

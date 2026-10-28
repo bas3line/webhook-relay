@@ -1,14 +1,14 @@
 // Signs a sample boat event the way boat does and posts it to the relay.
 //
-//   npm run send                          sandbox.ready, to `npm run dev` on :8787
-//   npm run send -- degraded              any of the six events, with or without `sandbox.`
-//   npm run send -- error https://<your worker>/boat
+//   npm run send:boat                          sandbox.ready, to `npm run dev` on :8787
+//   npm run send:boat -- degraded              any of the six events, with or without `sandbox.`
+//   npm run send:boat -- error https://<your worker>/boat
 //
 // The secret comes from BOAT_WEBHOOK_SECRET, or from .dev.vars.
 import { existsSync } from "node:fs";
 
-import { signDelivery } from "../src/boat.ts";
-import { SAMPLE_EVENTS, sampleEvent } from "../src/samples.ts";
+import { SAMPLE_EVENTS, sampleEvent } from "../src/sources/boat.samples.ts";
+import { signDelivery } from "../src/sources/boat.ts";
 
 const [name = "ready", url = "http://localhost:8787/boat"] = process.argv.slice(2);
 const type = name.startsWith("sandbox.") ? name : `sandbox.${name}`;

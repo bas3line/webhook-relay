@@ -1,6 +1,6 @@
-import type { BoatEvent } from "./types.ts";
+import type { BoatEvent } from "./boat.ts";
 
-// One delivery of each event, shaped like boat's, for the tests and `npm run send`.
+// One delivery of each event, shaped like boat's, for the tests and `npm run send:boat`.
 // The Worker never imports this file, so none of it ships.
 const sandbox = { id: "bx_sample", name: "Sample sandbox" };
 
