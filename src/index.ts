@@ -1,7 +1,7 @@
 import { parseEvent, verifySignature } from "./boat.ts";
 import { MAX_BODY_BYTES } from "./config.ts";
 import { toDiscordMessage } from "./discord.ts";
-import { json, log } from "./http.ts";
+import { json, log, readBody } from "./http.ts";
 import type { Env } from "./types.ts";
 
 const REPOSITORY = "https://github.com/bas3line/webhook-relay";
@@ -10,8 +10,8 @@ const REPOSITORY = "https://github.com/bas3line/webhook-relay";
 // outage or rate limit is a 502 here, and boat delivers the event again later.
 async function relayBoat(request: Request, env: Env): Promise<Response> {
   // Verify the raw bytes: parsing and re-serialising the JSON would break the signature.
-  const body = await request.arrayBuffer();
-  if (body.byteLength > MAX_BODY_BYTES) {
+  const body = await readBody(request, MAX_BODY_BYTES);
+  if (!body) {
     return json({ error: "payload_too_large" }, 413);
   }
 

@@ -84,10 +84,16 @@ describe("POST /boat", () => {
     assert.equal(unreachable.status, 502);
   });
 
-  it("refuses a body far bigger than any delivery", async () => {
-    const response = await deliver("x".repeat(64 * 1024 + 1));
+  it("refuses a body far bigger than any delivery, streamed or declared", async () => {
+    const streamed = await deliver("x".repeat(64 * 1024 + 1));
+    assert.equal(streamed.status, 413);
 
-    assert.equal(response.status, 413);
+    const declared = new Request("https://relay.example/boat", {
+      method: "POST",
+      headers: { "content-length": String(10 * 1024 * 1024) },
+      body: "{}",
+    });
+    assert.equal((await worker.fetch(declared, env)).status, 413);
     assert.equal(calls.length, 0);
   });
 });
